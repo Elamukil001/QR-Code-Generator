@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Generator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='logo.png') }}">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <div class="container">
+        <header>
+            <div class="logo">
+                <img src="{{ url_for('static', filename='logo.png') }}" alt="QR Genius Logo" class="logo-img">
+                <h1>QR Genius</h1>
+            </div>
+            <p class="subtitle">Create stunning QR codes with custom logos instantly.</p>
+            <div class="header-actions">
+                <a href="{{ url_for('static', filename='app-release.apk') }}" class="apk-download-btn" download>
+                    <i class="fa-brands fa-android"></i>
+                    <span>Download App</span>
+                </a>
+            </div>
+        </header>
+
+        <main class="glass-card">
+            <div class="grid-layout">
+                <div class="input-section">
+                    <form id="qrForm">
+                        <div class="form-group">
+                            <label for="dataInput">Destination URL or Text</label>
+                            <div class="input-wrapper">
+                                <i class="fa-solid fa-link"></i>
+                                <input type="text" id="dataInput" name="data" placeholder="https://example.com"
+                                    required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="logoInput">Upload Logo (Optional)</label>
+                            <div class="file-upload-wrapper">
+                                <input type="file" id="logoInput" name="logo" accept="image/png, image/jpeg">
+                                <div class="file-upload-display">
+                                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                                    <span id="fileName">Choose a PNG or JPG file</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="submit" id="generateBtn" class="primary-btn">
+                            <span class="btn-text">Generate QR Code</span>
+                            <span class="loader hidden"></span>
+                        </button>
+                    </form>
+                </div>
+
+                <div class="preview-section">
+                    <div class="qr-placeholder" id="qrPlaceholder">
+                        <i class="fa-solid fa-qrcode placeholder-icon"></i>
+                        <p>Your QR code will appear here</p>
+                    </div>
+                    <img id="qrImage" class="qr-image hidden" src="" alt="Generated QR Code">
+
+                    <div class="actions hidden" id="actionButtons">
+                        <button id="downloadBtn" class="secondary-btn">
+                            <i class="fa-solid fa-download"></i> Download PNG
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 QR Genius. Crafted with <i class="fa-solid fa-heart"></i> by Antigravity.</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+</html>
